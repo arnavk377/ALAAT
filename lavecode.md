@@ -1,4 +1,6 @@
-<!--Start of Website Content-->
+ <a href="https://github.com/MuffinMan1287/ALAAT/"><img src ="images/Alogo.png"></a>
+
+ <!--Start of Website Content-->
 <div class="index-header">
     <h1>ALAAT PHOTO GALLERY</h1>
     <p>Final Passion Project by: Adi Nawhandar, Arnav Kenekar, Taiyo Iwazaki, Liav Bar, and Amay Advani</p>
@@ -39,10 +41,3 @@
         <h3>Amay Advani</h3>
         <p>Developer</p>
 </div>
-
-<!-- 
-<section class="about">
-    <h3>OUR MISSION</h3>
-    <p>Learning how to customize your website/game </p> -->
-
-<!-- </section> -->
