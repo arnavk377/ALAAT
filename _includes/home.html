@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <!--the header section or the top part of every page-->
+        <section class="header">
+            <nav>
+                <!--the logo on the header-->
+                <a href="https://github.com/EC-2-GAL/TeamWebsite/"><img src ="images/logo.png"></a>
+                <div class="nav-links">
+                    <ul>
+                        <!--the links to the other pages-->
+                        <li><a href="{{ site.baseurl }}/">HOME</a></li>
+                        <li><a href="{{ site.baseurl }}/page1.html">CU1</a></li>
+                        <li><a href="{{ site.baseurl }}/page2.html">CU2</a></li>
+                        <li class="dropdown">
+                            <a href="javascript:void(0)" class="dropbtn">JAVASCRIPT</a>
+                            <div class="dropdown-content">
+                                <a href="{{ site.baseurl }}/snake">SNAKE</a>
+                                <a href="{{ site.baseurl }}/snakeblog.html">LESSON</a>
+                            </div>
+                          </li>
+                        <li><a href="{{ site.baseurl }}/page4.html">HACKS</a></li>
+                        <li><a href="{{ site.baseurl }}/bootstrap.html">Bootstrap</a></li>
+                        <li><a href="{{ site.baseurl }}/cu.html">Selectors</a></li>
+                    </ul>
+                    <!--loading screen-->
+                    <script>
+                        var loader = document.getElementById("loading");
+                        window.addEventListener("load", function(){
+                            loader.style.display = "none";
+                        })
+                    </script>
+                </div>
+            </nav>
+        </section>
+    </body>
+</html>
+
+
+

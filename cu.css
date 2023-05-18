@@ -1,0 +1,26 @@
+.column {
+    border-radius: 25px;
+    padding: 50px;
+    padding-right: 10px;
+    background-image: linear-gradient(180deg, #b848e4, #dfc9ff);
+    /* background-color: #48CAE4; */
+    border: 2px solid white;
+    padding-top:30px;
+}
+
+h1{
+    text-align:center;
+    text-shadow: 2px 2px #f7e7ff;
+    color:rgb(255, 255, 255);
+}
+
+h2{
+    text-align:center;
+    padding: 30px;
+    color:#7277a5;
+}
+
+p{
+    text-align:center;
+    color:#448ded;
+}
