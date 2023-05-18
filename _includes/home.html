@@ -36,5 +36,79 @@
     </body>
 </html>
 
+<div class='wrap'>
+    <ul class='carousel is-set'>
+      <li class='carousel-seat' style="background-image: url('../bordrad.jpg');""
+        <h2>1</h2>
+      </li>
+      <li class='carousel-seat'>
+        <h2>2</h2>
+      </li>
+      <li class='carousel-seat'>
+        <h2>3</h2>
+      </li>
+      <li class='carousel-seat'>
+        <h2>4</h2>
+      </li>
+      <li class='carousel-seat'>
+        <h2>5</h2>
+      </li>
+      <li class='carousel-seat'>
+        <h2>6</h2>
+      </li>
+      <li class='carousel-seat'>
+        <h2>7</h2>
+      </li>
+      <li class='carousel-seat'>
+        <h2>8</h2>
+      </li>
+      <li class='carousel-seat'>
+        <h2>9</h2>
+      </li>
+      <li class='carousel-seat'>
+        <h2>10</h2>
+      </li>
+      <li class='carousel-seat'>
+        <h2>11</h2>
+      </li>
+      <li class='carousel-seat is-ref'>
+        <h2>12</h2>
+      </li>
+    </ul>
+  </div>
+  
+  
+<script>
+  var carousel = $('.carousel');
+var seats = $('.carousel-seat');
 
+var next = function(el) {
+  if (el.next().length > 0) {
+    return el.next();0
+  } else {
+    return seats.first();
+  }
+};
+
+var progress = function(e) {
+  var el = $('.is-ref').removeClass('is-ref');
+  var new_seat = next(el);
+
+  new_seat.addClass('is-ref').css('order', 1);
+  for (var i = 2, ref = seats.length; i <= ref; i++) {
+    new_seat = next(new_seat).css('order', i);
+    console.log(new_seat);
+  }
+
+  carousel.removeClass('is-set');
+
+  return setTimeout((function() {
+    return carousel.addClass('is-set');
+  }), 50);
+};
+
+window.setInterval(function(){
+  progress();
+}, 2000);
+</script>
 
