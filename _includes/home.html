@@ -36,79 +36,11 @@
     </body>
 </html>
 
-<div class='wrap'>
-    <ul class='carousel is-set'>
-      <li class='carousel-seat' style="background-image: url('../bordrad.jpg');""
-        <h2>1</h2>
-      </li>
-      <li class='carousel-seat'>
-        <h2>2</h2>
-      </li>
-      <li class='carousel-seat'>
-        <h2>3</h2>
-      </li>
-      <li class='carousel-seat'>
-        <h2>4</h2>
-      </li>
-      <li class='carousel-seat'>
-        <h2>5</h2>
-      </li>
-      <li class='carousel-seat'>
-        <h2>6</h2>
-      </li>
-      <li class='carousel-seat'>
-        <h2>7</h2>
-      </li>
-      <li class='carousel-seat'>
-        <h2>8</h2>
-      </li>
-      <li class='carousel-seat'>
-        <h2>9</h2>
-      </li>
-      <li class='carousel-seat'>
-        <h2>10</h2>
-      </li>
-      <li class='carousel-seat'>
-        <h2>11</h2>
-      </li>
-      <li class='carousel-seat is-ref'>
-        <h2>12</h2>
-      </li>
-    </ul>
-  </div>
-  
-  
-<script>
-  var carousel = $('.carousel');
-var seats = $('.carousel-seat');
+<!--All images sourced by permission from yours truly-->
 
-var next = function(el) {
-  if (el.next().length > 0) {
-    return el.next();0
-  } else {
-    return seats.first();
-  }
-};
-
-var progress = function(e) {
-  var el = $('.is-ref').removeClass('is-ref');
-  var new_seat = next(el);
-
-  new_seat.addClass('is-ref').css('order', 1);
-  for (var i = 2, ref = seats.length; i <= ref; i++) {
-    new_seat = next(new_seat).css('order', i);
-    console.log(new_seat);
-  }
-
-  carousel.removeClass('is-set');
-
-  return setTimeout((function() {
-    return carousel.addClass('is-set');
-  }), 50);
-};
-
-window.setInterval(function(){
-  progress();
-}, 2000);
-</script>
-
+<section id="carousel">
+  <img src="https://farm5.staticflickr.com/4772/40677947021_5cbf9f2988_k.jpg" class="carousel-img">
+  <img src="https://farm5.staticflickr.com/4467/37419134374_80e1232ef3_k.jpg" class="carousel-img">
+  <img src="https://farm5.staticflickr.com/4463/38060919546_a89e2ebbd6_k.jpg" class="carousel-img">
+  <img src="https://farm5.staticflickr.com/4415/37119376555_b6e6b1d475_k.jpg" class="carousel-img">
+  <img src="https://farm5.staticflickr.com/4358/36591358056_f7b115d78b_k.jpg" class="carousel-img"></section>
