@@ -1,20 +1,25 @@
+<!DOCTYPE html>
 <html>
 <head>
     <title>Image Upload</title>
     <style>
-        .drop-zone {
-            margin-top: 20px;
-            margin-left: auto;
-            margin-right: auto;
+        body {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            justify-content: flex-start;
             align-items: center;
+            height: 100vh;
+        }
+        .drop-zone {
             width: 400px;
             height: 400px;
             border: 2px dashed #ccc;
             text-align: center;
             padding: 20px;
             font-size: 16px;
+            margin-top: 40px;
+            margin-left: auto;
+            margin-right: auto;
         }
         .drop-zone.dragged-over {
             background-color: #f7f7f7;
@@ -27,47 +32,75 @@
     </div>
     <script>
         const dropZone = document.getElementById('dropZone');
-        // Handle the dragover event
-        dropZone.addEventListener('dragover', (e) => {
-            e.preventDefault();
+        dropZone.addEventListener('dragenter', (event) => {
+            event.preventDefault();
             dropZone.classList.add('dragged-over');
         });
-        // Handle the dragleave event
-        dropZone.addEventListener('dragleave', () => {
+        dropZone.addEventListener('dragleave', (event) => {
+            event.preventDefault();
             dropZone.classList.remove('dragged-over');
         });
-        // Handle the drop event
-        dropZone.addEventListener('drop', (e) => {
-            e.preventDefault();
-            dropZone.classList.remove('dragged-over');
-            handleDrop(e.dataTransfer.files);
+        dropZone.addEventListener('dragover', (event) => {
+            event.preventDefault();
         });
-        // Function to handle the dropped files
-        function handleDrop(files) {
-            for (let i = 0; i < files.length; i++) {
-                const file = files[i];
-                const formData = new FormData();
-                formData.append('image', file);
-                // Send the image file to the backend
-                uploadImage(formData);
-            }
-        }
-        // Function to upload the image to the backend
-        function uploadImage(formData) {
-            fetch('/upload', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Image uploaded successfully:', data);
-                // Handle the response from the backend, if needed
-            })
-            .catch(error => {
-                console.error('Error uploading image:', error);
-                // Handle the error, if needed
-            });
-        }
+        dropZone.addEventListener('drop', (event) => {
+            event.preventDefault();
+            dropZone.classList.remove('dragged-over');
+            const file = event.dataTransfer.files[0];
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const img = new Image();
+                img.src = e.target.result;
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    // Set the desired width and height for the compressed image
+                    const maxWidth = 800;
+                    const maxHeight = 600;
+                    let width = img.width;
+                    let height = img.height;
+                    // Calculate the new dimensions while maintaining the aspect ratio
+                    if (width > maxWidth) {
+                        height *= maxWidth / width;
+                        width = maxWidth;
+                    }
+                    if (height > maxHeight) {
+                        width *= maxHeight / height;
+                        height = maxHeight;
+                    }
+                    // Set the canvas dimensions
+                    canvas.width = width;
+                    canvas.height = height;
+                    // Draw the compressed image on the canvas
+                    ctx.drawImage(img, 0, 0, width, height);
+                    // Get the compressed image as a base64-encoded string
+                    const compressedImage = canvas.toDataURL('image/jpeg', 0.8);
+                    // Create a Blob object from the base64-encoded string
+                    const byteCharacters = atob(compressedImage.split(',')[1]);
+                    const byteArrays = [];
+                    for (let i = 0; i < byteCharacters.length; i++) {
+                        byteArrays.push(byteCharacters.charCodeAt(i));
+                    }
+                    const blob = new Blob([new Uint8Array(byteArrays)], { type: 'image/jpeg' });
+                    // Create a FormData object to send the compressed image as multipart/form-data
+                    const formData = new FormData();
+                    formData.append('image', blob, 'compressed.jpg');
+                    // Send the compressed image to the backend using an HTTP POST request
+                    fetch('/upload', {
+                        method: 'POST',
+                        body: formData
+                    })
+                        .then(response => {
+                            // Handle the response from the backend
+                            console.log('Image uploaded successfully');
+                        })
+                            .catch(error => {
+                                // Handle any errors that occurred during the upload
+                                console.error('Error uploading image:', error);
+                            });
+                    }, 'image/jpeg', 0.8);
+            };
+        };
     </script>
 </body>
 </html>
