@@ -1,8 +1,33 @@
+.glow {
+  font-size: 80px;
+  color: #b9d7ff;
+  text-align: center;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #eaeaea, 0 0 20px #f6f6f6, 0 0 25px #f6f6f6, 0 0 30px #ffffff, 0 0 35px #edf0f3;
+}
+
+.glow2 {
+  color: #7979ff;
+  text-align: center;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #eaeaea, 0 0 20px #f6f6f6, 0 0 25px #f6f6f6, 0 0 30px #ffffff, 0 0 35px #edf0f3;
+}
+
 #carousel {
   height: 89vh;
   margin: 0;
   overflow: hidden;
 }
+
+.carousel-header {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  text-align: center;
+  color: rgb(143, 201, 255); 
+  z-index: 999;
+}
+
 
 .carousel-img {
   width: 100%;
@@ -54,3 +79,7 @@
     20% {opacity: 0;}
     to {opacity: 0;}
 }
+
+
+
+
