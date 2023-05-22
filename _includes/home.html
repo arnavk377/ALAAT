@@ -36,79 +36,23 @@
     </body>
 </html>
 
-<div class='wrap'>
-    <ul class='carousel is-set'>
-      <li class='carousel-seat' style="background-image: url('../bordrad.jpg');""
-        <h2>1</h2>
-      </li>
-      <li class='carousel-seat'>
-        <h2>2</h2>
-      </li>
-      <li class='carousel-seat'>
-        <h2>3</h2>
-      </li>
-      <li class='carousel-seat'>
-        <h2>4</h2>
-      </li>
-      <li class='carousel-seat'>
-        <h2>5</h2>
-      </li>
-      <li class='carousel-seat'>
-        <h2>6</h2>
-      </li>
-      <li class='carousel-seat'>
-        <h2>7</h2>
-      </li>
-      <li class='carousel-seat'>
-        <h2>8</h2>
-      </li>
-      <li class='carousel-seat'>
-        <h2>9</h2>
-      </li>
-      <li class='carousel-seat'>
-        <h2>10</h2>
-      </li>
-      <li class='carousel-seat'>
-        <h2>11</h2>
-      </li>
-      <li class='carousel-seat is-ref'>
-        <h2>12</h2>
-      </li>
-    </ul>
+<div class="carousel-header">
+  <h1 class="glow">ALAAT PHOTO GALLERY</h1>
+  <p class="glow2">Final Passion Project by: Adi Nawhandar, Arnav Kenekar, Taiyo Iwazaki, Liav Bar, and Amay Advani</p>
+</div>
+
+<!--All images sourced by permission from yours truly-->
+<section id="carousel-container">
+  <div id="carousel">
+    <img src="../IMAGES/DSC06524.jpeg" class="carousel-img">
+    <img src="../IMAGES/25515226-0AA0-4D97-8B41-DD93441F056D.jpg" class="carousel-img">
+    <img src="../IMAGES/CCA29AA9-DC67-4827-95FC-FEE662C2D144.jpg" class="carousel-img">
+    <img src="../IMAGES/peakpx (1).jpg" class="carousel-img">
+    <img src="../IMAGES/IMG_9739_Original.jpg" class="carousel-img">
+    <img src="../IMAGES/3DCC127E-49B2-42EA-B9CC-644B87529599.JPG" class="carousel-img">
+    <img src="../IMAGES/IMG_9401_Original.jpg" class="carousel-img">
+    <img src="../IMAGES/DSC00347.JPG" class="carousel-img">
+    <img src="../IMAGES/IMG_0939.jpeg" class="carousel-img">
   </div>
-  
-  
-<script>
-  var carousel = $('.carousel');
-var seats = $('.carousel-seat');
-
-var next = function(el) {
-  if (el.next().length > 0) {
-    return el.next();0
-  } else {
-    return seats.first();
-  }
-};
-
-var progress = function(e) {
-  var el = $('.is-ref').removeClass('is-ref');
-  var new_seat = next(el);
-
-  new_seat.addClass('is-ref').css('order', 1);
-  for (var i = 2, ref = seats.length; i <= ref; i++) {
-    new_seat = next(new_seat).css('order', i);
-    console.log(new_seat);
-  }
-
-  carousel.removeClass('is-set');
-
-  return setTimeout((function() {
-    return carousel.addClass('is-set');
-  }), 50);
-};
-
-window.setInterval(function(){
-  progress();
-}, 2000);
-</script>
+</section>
 
