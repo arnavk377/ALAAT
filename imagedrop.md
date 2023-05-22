@@ -1,5 +1,98 @@
-<!DOCTYPE html>
 <html>
+<head>
+    <title>Image Upload</title>
+</head>
+<input type="file" id="imageInput">
+<button onclick="uploadImage()">Upload</button>
+<img id="previewImage" src="#" alt="Preview">
+<script>
+function uploadImage() {
+  var input = document.getElementById('imageInput');
+  var preview = document.getElementById('previewImage');
+  // Get the selected file
+  var file = input.files[0];
+  // Create a FileReader object
+  var reader = new FileReader();
+  // Set the image source once it's loaded
+  reader.onload = function(e) {
+    preview.src = e.target.result;
+  };
+  // Read the image file as a data URL
+  reader.readAsDataURL(file);
+ // Create a FormData object to store the file
+      var formData = new FormData();
+      formData.append('image', file);
+      // Make a POST request to the server endpoint
+      fetch('your_server_endpoint_url', {
+        method: 'POST',
+        body: formData
+      })
+        .then(response => {
+          // Handle the response from the server
+          if (response.ok) {
+            alert('Image uploaded successfully!');
+          } else {
+            alert('Image upload failed!');
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+      // Set the image source for preview
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        preview.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  </script>
+
+  <style>
+    #previewImage {
+      width: 200px;
+      height: 200px;
+      margin-top: 10px;
+    }
+  </style>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<html>
 <head>
     <title>Image Upload</title>
     <style>
@@ -104,3 +197,4 @@
     </script>
 </body>
 </html>
+-->
