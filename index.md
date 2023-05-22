@@ -1,8 +1,3 @@
-<!--Start of Website Content-->
-<div class="index-header">
-    <h1>ALAAT PHOTO GALLERY</h1>
-    <p>Final Passion Project by: Adi Nawhandar, Arnav Kenekar, Taiyo Iwazaki, Liav Bar, and Amay Advani</p>
-</div>
 
 
 <!--About Our Team-->
