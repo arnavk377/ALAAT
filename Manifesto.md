@@ -1,11 +1,17 @@
 Agile Manifesto:
-Through our own experience and that of others, we are learning more effective ways to create software. We've developed a sense of value for this job, and strive to have:
 
-Interaction and collaboration with each other
-High-quality, functional code to ensure our best product
-Clear communication of group deadlines to stay on top of things
-Our individual interests drive what tasks we want to complete 
-Not settling for the bare minimum, but constantly improving our product to the best of our ability 
-Everyone's best interest!
+We strive to have: 
 
-Claire Chen, Emma Shen, Grace Wang, Claire Zhao, Luna Iwazaki, Annika Liao
+User-centric design drives our decisions.
+Embrace iterative development and continuous improvement.
+Collaboration fosters creativity and innovation.
+Prioritize simplicity in code and user experience.
+Embrace change to meet evolving needs.
+Test early, test often, and automate.
+Communication is key for effective teamwork.
+Value working software over comprehensive documentation.
+Foster a supportive and inclusive team culture.
+Strive for high-quality code and user experience.
+
+Signed:
+Arnav, Adi, Taiyo, Liav, and Amay
