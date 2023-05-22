@@ -1,4 +1,5 @@
 <html>
+     <link rel="stylesheet" href="carousel.css">
     <div class="carousel-header">
     <h1 class="glow">ALAAT PHOTO GALLERY</h1>
     <p class="glow2">Final Passion Project by: Adi Nawhandar, Arnav Kenekar, Taiyo Iwazaki, Liav Bar, and Amay Advani</p>
