@@ -23,7 +23,7 @@ function uploadImage() {
       var formData = new FormData();
       formData.append('image', file);
       // Make a POST request to the server endpoint
-      fetch('your_server_endpoint_url', {
+      fetch('http://alaat.duckdns.org/api/images', {
         method: 'POST',
         body: formData
       })
@@ -61,6 +61,7 @@ function uploadImage() {
 .button {background-color: #3252b2;}
 </style>
 </html>
+
 
 
 
