@@ -53,8 +53,7 @@ function uploadImage() {
       height: 200px;
       margin-top: 10px;
     }
-  </style>
-</body>
+</style>
 </html>
 
 
