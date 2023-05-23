@@ -63,7 +63,7 @@
 
         // Check if the username and password match
         if (users.hasOwnProperty(username) && users[username] === password) {
-          window.location.href = 'https://www.youtube.com'; // Redirect to YouTube
+          window.location.href = 'https://muffinman1287.github.io/ALAAT/imagedrop.html'; // Redirect to YouTube
         } else {
           alert("Your username or password is wrong. Do better next time!");
         }

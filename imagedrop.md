@@ -2,8 +2,8 @@
 <head>
     <title>Image Upload</title>
 </head>
-<input type="file" id="imageInput">
-<button onclick="uploadImage()">Upload</button>
+<input class="button" type="file" id="imageInput">
+<button class="button" onclick="uploadImage()">Upload</button>
 <img id="previewImage" src="#" alt="Preview">
 <script>
 function uploadImage() {
@@ -53,6 +53,12 @@ function uploadImage() {
       height: 200px;
       margin-top: 10px;
     }
+    .button{
+      width: 100px;
+      height: 30px;
+      border-radius: 10px;
+    }
+.button {background-color: #3252b2;}
 </style>
 </html>
 
