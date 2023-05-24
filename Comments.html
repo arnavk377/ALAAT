@@ -1,0 +1,166 @@
+
+<container class="Commentssection">
+<html>
+  <head>
+    <title>User Comments</title>
+  </head>
+  <body>
+    <h1>User Comments</h1>
+    <div id="comments">
+      <!-- comments will be displayed here -->
+    </div>
+    <button id="delete-all-comments-button">Delete All Comments</button>
+    <h2>Add a Comment</h2>
+    <form id="comment-form">
+      <label>
+        Name:
+        <input type="text" id="username" required>
+      </label>
+      <br><br>
+      <label>
+        Comment:
+        <textarea id="comment" required></textarea>
+      </label>
+      <br><br>
+      <button type="submit">Submit</button>
+    </form>
+
+<script>
+const commentsDiv = document.querySelector('#comments');
+const deleteAllCommentsButton = document.querySelector('#delete-all-comments-button');
+
+// Fetch comments and display them
+async function fetchAndDisplayComments() {
+  try {
+    const response = await fetch('');
+    const comments = await response.json();
+    commentsDiv.innerHTML = '';
+    comments.forEach(comment => {
+      commentsDiv.innerHTML += `
+      <p><strong>${comment[1]}</strong> said: ${comment[2]}</p>
+      `;
+    });
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Delete all comments
+async function deleteAllComments() {
+  try {
+    const response = await fetch('', {
+      method: 'DELETE',
+    });
+    if (response.ok) {
+      commentsDiv.innerHTML = '';
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Handle button click events
+deleteAllCommentsButton.addEventListener('click', async event => {
+  event.preventDefault();
+  await deleteAllComments();
+});
+
+const form = document.querySelector('form');
+
+// Handle form submissions
+form.addEventListener('submit', async event => {
+  event.preventDefault();
+  const username = document.querySelector('#username').value;
+  const comment = document.querySelector('#comment').value;
+  const response = await fetch('', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      
+    },
+    mode: 'cors',
+    credentials: 'omit',
+    body: JSON.stringify({ username, comment }),
+  });
+  if (response.ok) {
+    form.reset();
+    fetchAndDisplayComments();
+  }
+});
+
+fetchAndDisplayComments();
+</script>
+
+  </body>
+</html>
+</container>
+
+
+
+<style>
+
+.container {
+  margin-top: 700px;
+  display: flex;
+  flex-direction: row;
+}
+
+.information-text {
+  padding: 10px;
+}
+
+.container .lexusrcf{
+    float:left;
+    position: relative;
+    margin-left: 30px;
+} 
+
+.Commentssection {
+        width: 80%;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      #comments {
+        background-color: lightgray;
+        padding: 10px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+      }
+
+      #comment-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: lightgray;
+        padding: 20px;
+        border-radius: 10px;
+        margin-left: 410px;
+      }
+
+      input, textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        border: 1px solid gray;
+      }
+
+      button {
+        width: 20%;
+        padding: 10px;
+        background-color: lightblue;
+        color: white;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+      }
+
+      p {
+        margin: 10px;
+      }
+
+
+
+</style>
+
