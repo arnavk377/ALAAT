@@ -38,33 +38,28 @@
         body {
   background-image: url(images/nonchalantmoon.jpeg);
   background-size: cover;
-}
+  }
 .my-gallery {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  align-content: flex-start;
-  width: 100%;
-  gap: 2px;
+  justify-content: center;
+  gap: 20px; /* Adjust the gap between images as needed */
 }
 .my-gallery figure {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 20px;
-  margin: 2px;
-  width: calc(18% - 5px);
-  max-width: 100%;
+  flex: 0 0 calc(20% - 20px); /* Adjust the width of each image as needed */
+  max-width: calc(20% - 20px); /* Adjust the width of each image as needed */
+  margin: 0;
+  position: relative;
+  overflow: hidden;
 }
 .my-gallery img {
   width: 100%;
   height: auto;
-  border-radius: 2px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease-in-out;
+  object-fit: cover;
+  transition: transform 0.3s ease;
 }
-.my-gallery img:hover {
-  transform: scale(1.05);
+.my-gallery figure:hover img {
+  transform: scale(1.1);
 }
 .my-gallery figcaption {
   display: none;
@@ -84,8 +79,8 @@ h2 {
     <h2 class="glow">First gallery:</h2>
     <div class="my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
     <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-      <a href="https://farm3.staticflickr.com/2567/5697107145_a4c2eaa0cd_o.jpg" itemprop="contentUrl" data-size="2000x2000">
-          <img src="https://farm3.staticflickr.com/2567/5697107145_3c27ff3cd1_m.jpg" itemprop="thumbnail" alt="Image description" />
+      <a href="{{site.baseurl}}/images/DSC06524.jpeg" itemprop="contentUrl" data-size="2000x2000">
+          <img src="{{site.baseurl}}/images/DSC06524.jpeg" itemprop="thumbnail" alt="Image description" />
       </a>                                        <figcaption itemprop="caption description">Image caption  1</figcaption>                     
     </figure>
     <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
@@ -107,8 +102,8 @@ h2 {
       <figcaption itemprop="caption description">Image caption 4</figcaption>
     </figure>
     <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-      <a href="https://farm6.staticflickr.com/5023/5578283926_822e5e5791_b.jpg" itemprop="contentUrl" data-size="1024x768">
-          <img src="https://farm6.staticflickr.com/5023/5578283926_822e5e5791_m.jpg" itemprop="thumbnail" alt="Image description" />
+      <a href="{{site.baseurl}}/images/DSC00347.JPG" itemprop="contentUrl" data-size="1024x768">
+          <img src="{{site.baseurl}}/images/DSC00347.JPG" itemprop="thumbnail" alt="Image description" />
       </a>
       <figcaption itemprop="caption description">Image caption 5</figcaption>
     </figure>
