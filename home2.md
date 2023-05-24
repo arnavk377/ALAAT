@@ -57,6 +57,7 @@
   height: auto;
   object-fit: cover;
   transition: transform 0.3s ease;
+  border-radius: 5px;
 }
 .my-gallery figure:hover img {
   transform: scale(1.1);
