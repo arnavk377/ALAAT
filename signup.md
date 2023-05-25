@@ -40,14 +40,13 @@
       <input type="password" id="passwordInput" placeholder="Password">
       <button id="signupBtn">Sign Up</button>
    </form>
-      <button id="LoginBtn">Login up</button>
+      <button onclick="redirect()" id="LoginBtn">Login</button>
   </div>
 
 <script>
 function redirect(){
 window.location.href = '{{ site.baseurl }}/login.html';
 }
-   document.getElementById("LoginBtn").addEventListener("click", redirect(){});
    document.getElementById("signupForm").addEventListener("submit", function(event) {
     event.preventDefault(); // Prevent form submission
 
@@ -64,7 +63,7 @@ window.location.href = '{{ site.baseurl }}/login.html';
     };
 
     // Make the POST request
-    fetch("https://alaat.duckdns.org/api/users", {
+    fetch("https://alaat.duckdns.org/api/users/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
