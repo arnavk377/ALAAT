@@ -38,12 +38,17 @@
       <input type="text" id="nameInput" placeholder="Name">
       <input type="text" id="uidInput" placeholder="Username">
       <input type="password" id="passwordInput" placeholder="Password">
-      <button id="loginBtn">Sign Up</button>
-    </form>
+      <button id="signupBtn">Sign Up</button>
+   </form>
+      <button id="LoginBtn">Login up</button>
   </div>
 
-  <script>
-  document.getElementById("signupForm").addEventListener("submit", function(event) {
+<script>
+function redirect(){
+window.location.href = '{{ site.baseurl }}/login.html';
+}
+   document.getElementById("LoginBtn").addEventListener("click", redirect(){});
+   document.getElementById("signupForm").addEventListener("submit", function(event) {
     event.preventDefault(); // Prevent form submission
 
     // Get the input values
@@ -59,7 +64,7 @@
     };
 
     // Make the POST request
-    fetch("http://alaat.duckdns.org/api/users", {
+    fetch("https://alaat.duckdns.org/api/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
