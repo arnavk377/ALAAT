@@ -76,7 +76,6 @@ h2 {
   color: #213;
 }
     </style>
-<!DOCTYPE html>
 <html>
 <head>
   <style>
