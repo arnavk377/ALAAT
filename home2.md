@@ -1,8 +1,9 @@
+<!-- This is the Carousel header where it describes the project -->
 <div class="carousel-header">
   <h1 class="glow">ALAAT PHOTO GALLERY</h1>
   <p class="glow2">Final Passion Project by: Adi Nawhandar, Arnav Kenekar, Taiyo Iwazaki, Liav Bar, and Amay Advani</p>
 </div>
-<!--All images sourced by permission from yours truly-->
+<!-- This is the Images, You can change the images in the SRC section. This is only for the carousel -->
 <section id="carousel-container">
     <div id="carousel">
         <img src="{{site.baseurl}}/images/DSC06524.jpeg" class="carousel-img">
