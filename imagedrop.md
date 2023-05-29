@@ -22,88 +22,91 @@
         .drop-zone.dragged-over {
             background-color: #f7f7f7;
         }
+        #imagePreview {
+            width: 200px;
+            height: auto;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
-    <div class="drop-zone" id="dropZone">
-        <p>Drag and drop images here</p>
-    </div>
-    <div>
-        <label for="imageName">Image Name:</label>
-        <input type="text" id="imageName" name="imageName">
-    </div>
-    <div>
-        <label for="uid">UID:</label>
-        <input type="text" id="uid" name="uid">
-    </div>
+    <form id="uploadForm">
+        <div class="drop-zone" id="dropZone">
+            <p>Drag and drop images here</p>
+        </div>
+        <div>
+            <label for="imageName">Image Name:</label>
+            <input type="text" id="imageName" name="name">
+        </div>
+        <div>
+            <label for="uid">UID:</label>
+            <input type="text" id="uid" name="uid">
+        </div>
+        <input type="submit" value="Upload">
+    </form>
+    <img id="imagePreview" src="#" alt="Preview" style="display: none;">
     <script>
-        const dropZone = document.getElementById('dropZone');
-        dropZone.addEventListener('dragenter', (event) => {
-            event.preventDefault();
-            dropZone.classList.add('dragged-over');
-        });
-        dropZone.addEventListener('dragleave', (event) => {
-            event.preventDefault();
-            dropZone.classList.remove('dragged-over');
-        });
-        dropZone.addEventListener('dragover', (event) => {
-            event.preventDefault();
-            dropZone.classList.add('dragged-over');
-        });
-        dropZone.addEventListener('drop', (event) => {
-            event.preventDefault();
-            dropZone.classList.remove('dragged-over');
-            const file = event.dataTransfer.files[0];
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const img = new Image();
-                img.src = e.target.result;
-                img.onload = () => {
-                    const canvas = document.createElement('canvas');
-                    const ctx = canvas.getContext('2d');
-                    const maxWidth = 800;
-                    const maxHeight = 600;
-                    let width = img.width;
-                    let height = img.height;
-                    if (width > maxWidth) {
-                        height *= maxWidth / width;
-                        width = maxWidth;
-                    }
-                    if (height > maxHeight) {
-                        width *= maxHeight / height;
-                        height = maxHeight;
-                    }
-                    canvas.width = width;
-                    canvas.height = height;
-                    ctx.drawImage(img, 0, 0, width, height);
-                    const compressedImage = canvas.toDataURL('image/jpeg', 0.8);
-                    const base64Data = compressedImage.split(',')[1];
-                    const imageName = document.getElementById('imageName').value;
-                    const uid = document.getElementById('uid').value;
-                    const formData = new FormData();
-                    formData.append('image', base64Data);
-                    formData.append('name', imageName);
-                    formData.append('uid', uid);
-                    formData.append('likes', '0');
-                    const requestOptions = {
-                        method: 'POST',
-                        body: JSON.stringify(formData),
-                        headers: {
-                            "content-type": "application/json",
-                            'Authorization': 'Bearer my-token',
-                        },
-                    };
-                    fetch('https://alaat.duckdns.org/api/images/', requestOptions)
-                        .then(response => {
-                            console.log('Image uploaded successfully');
-                        })
-                        .catch(error => {
-                            console.error('Error uploading image:', error);
-                        });
-                };
-            };
-            reader.readAsDataURL(file);
-        });
-    </script>
+      const dropZone = document.getElementById('dropZone');
+      const imagePreview = document.getElementById('imagePreview');
+      const uploadForm = document.getElementById('uploadForm');
+      let base64Image = ''; // Variable to store the base64 value of the image
+      dropZone.addEventListener('dragenter', (event) => {
+          event.preventDefault();
+          dropZone.classList.add('dragged-over');
+      });
+      dropZone.addEventListener('dragleave', (event) => {
+          event.preventDefault();
+          dropZone.classList.remove('dragged-over');
+      });
+      dropZone.addEventListener('dragover', (event) => {
+          event.preventDefault();
+          dropZone.classList.add('dragged-over');
+      });
+      dropZone.addEventListener('drop', (event) => {
+          event.preventDefault();
+          dropZone.classList.remove('dragged-over');
+          const file = event.dataTransfer.files[0];
+          const reader = new FileReader();
+          reader.onload = (e) => {
+              imagePreview.src = e.target.result;
+              imagePreview.style.display = 'block';
+              base64Image = e.target.result.split(',')[1]; // Extract base64 value
+          };
+          reader.readAsDataURL(file);
+      });
+      uploadForm.addEventListener('submit', (event) => {
+          event.preventDefault();
+          const formData = {
+              image: base64Image,
+              name: uploadForm.elements.imageName.value,
+              uid: uploadForm.elements.uid.value,
+              likes: '0'
+          };
+          const requestOptions = {
+              method: 'POST',
+              body: JSON.stringify(formData),
+              mode: 'cors', // headers for cors policy
+              cache: 'default', // cache header
+              credentials: 'omit', // header for credentials
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Bearer my-token',
+              },
+          };
+          fetch('https://alaat.duckdns.org/api/images/', requestOptions)
+              .then(response => {
+                  console.log('Image uploaded successfully');
+                  // Reset form and image preview
+                  uploadForm.reset();
+                  imagePreview.src = '#';
+                  imagePreview.style.display = 'none';
+                  base64Image = ''; // Clear base64Image for the next upload
+              })
+              .catch(error => {
+                  console.error('Error uploading image:', error);
+              });
+      });
+</script>
+
 </body>
 </html>
