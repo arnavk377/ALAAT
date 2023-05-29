@@ -93,7 +93,7 @@
                             'Authorization': 'Bearer my-token',
                         },
                     };
-                    fetch('http://127.0.0.1:8086/api/images/', requestOptions)
+                    fetch('https://alaat.duckdns.org/api/images/', requestOptions)
                         .then(response => {
                             console.log('Image uploaded successfully');
                         })
