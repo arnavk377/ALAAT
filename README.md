@@ -1,6 +1,14 @@
 ## Backend Code
 [Link](https://github.com/Firestorm0986/Tri-3-web)
 
+## Runtime Instructions
+
+```bash
+ruby -v
+# Make sure that ruby is version 2.7.x
+bundle exec jekyll serve
+```
+
 ## UI, User Interface
 
 Usage
