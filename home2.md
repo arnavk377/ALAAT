@@ -1,8 +1,9 @@
+<!-- This is the Carousel header where it describes the project -->
 <div class="carousel-header">
   <h1 class="glow">ALAAT PHOTO GALLERY</h1>
   <p class="glow2">Final Passion Project by: Adi Nawhandar, Arnav Kenekar, Taiyo Iwazaki, Liav Bar, and Amay Advani</p>
 </div>
-<!--All images sourced by permission from yours truly-->
+<!-- This is the Images, You can change the images in the SRC section. This is only for the carousel -->
 <section id="carousel-container">
     <div id="carousel">
         <img src="{{site.baseurl}}/images/DSC06524.jpeg" class="carousel-img">
@@ -75,18 +76,28 @@ h2 {
   color: #213;
 }
     </style>
+<html>
+<head>
+  <style>
+    .image-container {
+      display: inline-block;
+      text-align: center;
+      margin: 10px;
+    }
+  </style>
 </head>
 <body>
-    <h2 class="glow">First gallery:</h2>
-    <div class="my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+  <h2 class="glow">First gallery:</h2>
+  <div class="my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
     <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
       <a href="{{site.baseurl}}/images/DSC06524.jpeg" itemprop="contentUrl" data-size="2000x2000">
-          <img src="{{site.baseurl}}/images/DSC06524.jpeg" itemprop="thumbnail" alt="Image description" />
-      </a>                                        <figcaption itemprop="caption description">Image caption  1</figcaption>                     
+        <img src="{{site.baseurl}}/images/DSC06524.jpeg" itemprop="thumbnail" alt="Image description" />
+      </a>
+      <figcaption itemprop="caption description">Image caption 1</figcaption>
     </figure>
     <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
       <a href="https://farm2.staticflickr.com/1043/5186867718_06b2e9e551_b.jpg" itemprop="contentUrl" data-size="964x1024">
-          <img src="https://farm2.staticflickr.com/1043/5186867718_06b2e9e551_m.jpg" itemprop="thumbnail" alt="Image description" />
+        <img src="https://farm2.staticflickr.com/1043/5186867718_06b2e9e551_m.jpg" itemprop="thumbnail" alt="Image description" />
       </a>
       <figcaption itemprop="caption description">Image caption 2</figcaption>
     </figure>
@@ -166,6 +177,53 @@ h2 {
             <figcaption itemprop="caption description">Image caption 2.3</figcaption>
         </figure>
     </div>
+    <!-- Add more image elements here -->
+  </div>
+
+  <script>
+    // Find all the image elements
+    var imageElements = document.querySelectorAll('.my-gallery img');
+
+    // Loop through each image element
+    imageElements.forEach(function(image) {
+      // Create a container div for the image and like button
+      var container = document.createElement('div');
+      container.className = 'image-container';
+
+      // Clone the image element
+      var clonedImage = image.cloneNode(true);
+
+      // Create a new like button element
+      var likeButton = document.createElement('button');
+      likeButton.className = 'like-button';
+      likeButton.textContent = 'Like';
+
+      // Create a new like count element
+      var likeCount = document.createElement('span');
+      likeCount.className = 'like-count';
+      likeCount.textContent = '0 likes';
+
+      // Append the cloned image, like button, and like count to the container
+      container.appendChild(clonedImage);
+      container.appendChild(likeButton);
+      container.appendChild(likeCount);
+
+      // Replace the original image element with the container
+      image.parentNode.replaceChild(container, image);
+    });
+
+    // Add event listener to all like buttons
+    var likeButtons = document.querySelectorAll('.like-button');
+    likeButtons.forEach(function(button) {
+      button.addEventListener('click', function() {
+        var countElement = this.parentNode.querySelector('.like-count');
+        var currentCount = parseInt(countElement.textContent);
+        countElement.textContent = (currentCount + 1) + ' likes';
+      });
+    });
+  </script>
+</body>
+</html>
     <!-- Root element of PhotoSwipe. Must have class pswp. -->
     <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
         <!-- Background of PhotoSwipe. 

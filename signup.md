@@ -38,7 +38,7 @@
       <input type="text" id="nameInput" placeholder="Name">
       <input type="text" id="uidInput" placeholder="Username">
       <input type="password" id="passwordInput" placeholder="Password">
-      <button id="signupBtn">Sign Up</button>
+      <button id="signupBtn" onclick="create_user()">Sign Up</button>
    </form>
       <button onclick="redirect()" id="LoginBtn">Login</button>
   </div>
@@ -47,38 +47,49 @@
 function redirect(){
 window.location.href = '{{ site.baseurl }}/login.html';
 }
-   document.getElementById("signupForm").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent form submission
+//const resultContainer = document.getElementById("result");
+  // set up base URL to make it easier to use and implement
+  const url = "https://alaat.duckdns.org/api/users"
 
-    // Get the input values
-    var name = document.getElementById("nameInput").value;
-    var username = document.getElementById("uidInput").value;
-    var password = document.getElementById("passwordInput").value;
+  const create_fetch = url + '/';
+  const read_fetch = url + '/';
+  const delete_fetch = url + '/delete';
+  const patch_fetch = url + '/update';
+ // const read_button = document.getElementById("read_button");
+  // const criteria = document.getElementById("criteria")
+  // Display a fact pair
 
-    // Create an object with the user data
-    var userData = {
-      name: name,
-      username: username,
-      password: password
+function create_user(){
+    const body = {
+        name: document.getElementById("nameInput").value,
+        uid: document.getElementById("uidInput").value,
+        password: document.getElementById("passwordInput").value,
     };
-
-    // Make the POST request
-    fetch("https://alaat.duckdns.org/api/users/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(userData)
+    const requestOptions = {
+        method: 'POST',
+        body: JSON.stringify(body),
+        mode: 'cors', // headers for cors policy
+        cache: 'default', // cahe header
+        credentials: 'omit', // header for credentials
+        headers: {
+            "content-type": "application/json",
+            'Authorization': 'Bearer my-token',
+        },
+    };
+    fetch(create_fetch, requestOptions)
+      .then(response => {
+        // check if errors
+        if (response.status !== 200) {
+          const errorMsg = 'Database create error: ' + response.status;
+          console.log(errorMsg);
+          const tr = document.createElement("tr");
+          const td = document.createElement("td");
+          td.innerHTML = errorMsg;
+          tr.appendChild(td);
+          resultContainer.appendChild(tr);
+          return;
+        }
     })
-      .then(response => response.json())
-      .then(data => {
-        // Handle the response data
-        console.log(data); // You can do something with the response here
-      })
-      .catch(error => {
-        // Handle any errors
-        console.error(error);
-      });
-  });
+  }
 </script>
 </html>

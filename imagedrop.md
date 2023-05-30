@@ -1,104 +1,3 @@
-<html>
-<head>
-    <title>Image Upload</title>
-</head>
-<input class="button" type="file" id="imageInput">
-<button class="button" onclick="uploadImage()">Upload</button>
-<img id="previewImage" src="#" alt="Preview">
-<script>
-function uploadImage() {
-  var input = document.getElementById('imageInput');
-  var preview = document.getElementById('previewImage');
-  // Get the selected file
-  var file = input.files[0];
-  // Create a FileReader object
-  var reader = new FileReader();
-  // Set the image source once it's loaded
-  reader.onload = function(e) {
-    preview.src = e.target.result;
-  };
-  // Read the image file as a data URL
-  reader.readAsDataURL(file);
- // Create a FormData object to store the file
-      var formData = new FormData();
-      formData.append('image', file);
-      // Make a POST request to the server endpoint
-      fetch('http://alaat.duckdns.org/api/images', {
-        method: 'POST',
-        body: formData
-      })
-        .then(response => {
-          // Handle the response from the server
-          if (response.ok) {
-            alert('Image uploaded successfully!');
-          } else {
-            alert('Image upload failed!');
-          }
-        })
-        .catch(error => {
-          console.error('Error:', error);
-        });
-      // Set the image source for preview
-      var reader = new FileReader();
-      reader.onload = function(e) {
-        preview.src = e.target.result;
-      };
-      reader.readAsDataURL(file);
-    }
-  </script>
-
-  <style>
-    #previewImage {
-      width: 200px;
-      height: 200px;
-      margin-top: 10px;
-    }
-    .button{
-      width: 100px;
-      height: 30px;
-      border-radius: 10px;
-    }
-.button {background-color: #3252b2;}
-</style>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--<html>
 <head>
     <title>Image Upload</title>
     <style>
@@ -123,84 +22,94 @@ function uploadImage() {
         .drop-zone.dragged-over {
             background-color: #f7f7f7;
         }
+        #imagePreview {
+            width: 200px;
+            height: auto;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
-    <div class="drop-zone" id="dropZone">
-        <p>Drag and drop images here</p>
-    </div>
+    <form id="uploadForm">
+        <div class="drop-zone" id="dropZone">
+            <p>Drag and drop images here</p>
+        </div>
+        <div>
+            <label for="imageName">Image Name:</label>
+            <input type="text" id="imageName" name="name">
+        </div>
+        <div>
+            <label for="uid">UID:</label>
+            <input type="text" id="uid" name="uid">
+        </div>
+        <input type="submit" value="Upload">
+    </form>
+    <img id="imagePreview" src="#" alt="Preview" style="display: none;">
     <script>
-        const dropZone = document.getElementById('dropZone');
-        dropZone.addEventListener('dragenter', (event) => {
-            event.preventDefault();
-            dropZone.classList.add('dragged-over');
-        });
-        dropZone.addEventListener('dragleave', (event) => {
-            event.preventDefault();
-            dropZone.classList.remove('dragged-over');
-        });
-        dropZone.addEventListener('dragover', (event) => {
-            event.preventDefault();
-        });
-        dropZone.addEventListener('drop', (event) => {
-            event.preventDefault();
-            dropZone.classList.remove('dragged-over');
-            const file = event.dataTransfer.files[0];
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const img = new Image();
-                img.src = e.target.result;
-                img.onload = () => {
-                    const canvas = document.createElement('canvas');
-                    const ctx = canvas.getContext('2d');
-                    // Set the desired width and height for the compressed image
-                    const maxWidth = 800;
-                    const maxHeight = 600;
-                    let width = img.width;
-                    let height = img.height;
-                    // Calculate the new dimensions while maintaining the aspect ratio
-                    if (width > maxWidth) {
-                        height *= maxWidth / width;
-                        width = maxWidth;
-                    }
-                    if (height > maxHeight) {
-                        width *= maxHeight / height;
-                        height = maxHeight;
-                    }
-                    // Set the canvas dimensions
-                    canvas.width = width;
-                    canvas.height = height;
-                    // Draw the compressed image on the canvas
-                    ctx.drawImage(img, 0, 0, width, height);
-                    // Get the compressed image as a base64-encoded string
-                    const compressedImage = canvas.toDataURL('image/jpeg', 0.8);
-                    // Create a Blob object from the base64-encoded string
-                    const byteCharacters = atob(compressedImage.split(',')[1]);
-                    const byteArrays = [];
-                    for (let i = 0; i < byteCharacters.length; i++) {
-                        byteArrays.push(byteCharacters.charCodeAt(i));
-                    }
-                    const blob = new Blob([new Uint8Array(byteArrays)], { type: 'image/jpeg' });
-                    // Create a FormData object to send the compressed image as multipart/form-data
-                    const formData = new FormData();
-                    formData.append('image', blob, 'compressed.jpg');
-                    // Send the compressed image to the backend using an HTTP POST request
-                    fetch('/upload', {
-                        method: 'POST',
-                        body: formData
-                    })
-                        .then(response => {
-                            // Handle the response from the backend
-                            console.log('Image uploaded successfully');
-                        })
-                            .catch(error => {
-                                // Handle any errors that occurred during the upload
-                                console.error('Error uploading image:', error);
-                            });
-                    }, 'image/jpeg', 0.8);
-            };
-        };
-    </script>
+      const dropZone = document.getElementById('dropZone');
+      const imagePreview = document.getElementById('imagePreview');
+      const uploadForm = document.getElementById('uploadForm');
+      let base64Image = ''; // Variable to store the base64 value of the image
+      let formattedImage = '';
+      dropZone.addEventListener('dragenter', (event) => {
+          event.preventDefault();
+          dropZone.classList.add('dragged-over');
+      });
+      dropZone.addEventListener('dragleave', (event) => {
+          event.preventDefault();
+          dropZone.classList.remove('dragged-over');
+      });
+      dropZone.addEventListener('dragover', (event) => {
+          event.preventDefault();
+          dropZone.classList.add('dragged-over');
+      });
+      dropZone.addEventListener('drop', (event) => {
+          event.preventDefault();
+          dropZone.classList.remove('dragged-over');
+          const file = event.dataTransfer.files[0];
+          const reader = new FileReader();
+          reader.onload = (e) => {        
+              base64Image = e.target.result.split(',')[1]; // Extract base64 value
+              formattedImage = `data:image/jpeg;base64,${base64Image}`;
+              console.log(formattedImage)
+              imagePreview.src = formattedImage;
+              imagePreview.style.display = 'block';
+          };
+          reader.readAsDataURL(file);
+      });
+      uploadForm.addEventListener('submit', (event) => {
+          event.preventDefault();
+          const formData = {
+              image: formattedImage,
+              likes: '0',
+              name: uploadForm.elements.imageName.value,
+              uid: uploadForm.elements.uid.value
+          };
+          const requestOptions = {
+              method: 'POST',
+              body: JSON.stringify(formData),
+              mode: 'cors', // headers for cors policy
+              cache: 'default', // cache header
+              credentials: 'omit', // header for credentials
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': 'Bearer my-token',
+              },
+          };
+          fetch('http://127.0.0.1:8086/api/images/', requestOptions)
+              .then(response => {
+                  console.log('Image uploaded successfully');
+                  // Reset form and image preview
+                  uploadForm.reset();
+                  imagePreview.src = '#';
+                  imagePreview.style.display = 'none';
+                  base64Image = ''; // Clear base64Image for the next upload
+              })
+              .catch(error => {
+                  console.error('Error uploading image:', error);
+              });
+      });
+</script>
+
 </body>
-</html>
--->
+
