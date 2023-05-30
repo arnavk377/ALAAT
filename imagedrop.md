@@ -50,6 +50,7 @@
       const imagePreview = document.getElementById('imagePreview');
       const uploadForm = document.getElementById('uploadForm');
       let base64Image = ''; // Variable to store the base64 value of the image
+      let formattedImage = '';
       dropZone.addEventListener('dragenter', (event) => {
           event.preventDefault();
           dropZone.classList.add('dragged-over');
@@ -67,20 +68,22 @@
           dropZone.classList.remove('dragged-over');
           const file = event.dataTransfer.files[0];
           const reader = new FileReader();
-          reader.onload = (e) => {
-              imagePreview.src = e.target.result;
-              imagePreview.style.display = 'block';
+          reader.onload = (e) => {        
               base64Image = e.target.result.split(',')[1]; // Extract base64 value
+              formattedImage = `data:image/jpeg;base64,${base64Image}`;
+              console.log(formattedImage)
+              imagePreview.src = formattedImage;
+              imagePreview.style.display = 'block';
           };
           reader.readAsDataURL(file);
       });
       uploadForm.addEventListener('submit', (event) => {
           event.preventDefault();
           const formData = {
-              image: base64Image,
+              image: formattedImage,
+              likes: '0',
               name: uploadForm.elements.imageName.value,
-              uid: uploadForm.elements.uid.value,
-              likes: '0'
+              uid: uploadForm.elements.uid.value
           };
           const requestOptions = {
               method: 'POST',
@@ -93,7 +96,7 @@
                   'Authorization': 'Bearer my-token',
               },
           };
-          fetch('https://alaat.duckdns.org/api/images/', requestOptions)
+          fetch('http://127.0.0.1:8086/api/images/', requestOptions)
               .then(response => {
                   console.log('Image uploaded successfully');
                   // Reset form and image preview
@@ -109,4 +112,4 @@
 </script>
 
 </body>
-</html>
+
