@@ -42,14 +42,6 @@
   </div>
 
   <script>
-    // Dictionary to store username-password pairs
-    var users = {
-      "amay": "advani",
-      "arnav": "kanekar",
-      "taiyo": "iwazaki",
-      "adi": "nawandhar",
-      "liav": "bar"
-    };
     document.addEventListener('DOMContentLoaded', function() {
       var loginForm = document.getElementById('loginForm');
       var usernameInput = document.getElementById('usernameInput');
@@ -61,12 +53,20 @@
         var username = usernameInput.value;
         var password = passwordInput.value;
 
-        // Check if the username and password match
-        if (users.hasOwnProperty(username) && users[username] === password) {
-          window.location.href = '{{ site.baseurl }}/imagedrop.html'; // Redirect to YouTube
-        } else {
-          alert("Your username or password is wrong. Do better next time!");
-        }
+        // Make the GET request to retrieve user data
+        fetch("https://alaat.duckdns.org/api/users?username=" + encodeURIComponent(username))
+          .then(response => response.json())
+          .then(data => {
+            if (data && data.username === username && data.password === password) {
+              window.location.href = '{{ site.baseurl }}/imagedrop.html'; // Redirect to the desired page
+            } else {
+              alert("Your username or password is wrong. Do better next time!");
+            }
+          })
+          .catch(error => {
+            console.error(error);
+            alert("An error occurred while logging in. Please try again later.");
+          });
       });
     });
   </script>
