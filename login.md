@@ -57,18 +57,30 @@
         var name = nameInput.value;
 
         // Make the GET request to retrieve user data
-        fetch("https://alaat.duckdns.org/api/users")
+        fetch("http://127.0.0.1:8086/api/users")
           .then(response => response.json())
           .then(data => {
             var userFound = false;
+
+            console.log(data)
 
             // Iterate over the array of users
             for (var i = 0; i < data.length; i++) {
               var user = data[i];
 
+              console.log(user.name)
+              console.log(name)
+              console.log(name==user.name)
+
+              console.log(user.name=="rohin")
+
+
+
+
               // Check if the username, password, and name match for the current user
-              if (user.name === name) {
+              if (user.name == name) {
                 userFound = true;
+                
                 break;
               }
             }
