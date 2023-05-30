@@ -201,7 +201,7 @@ h2 {
       // Create a new like count element
       var likeCount = document.createElement('span');
       likeCount.className = 'like-count';
-      likeCount.textContent = '0 likes';
+      likeCount.textContent = 0 ;
 
       // Append the cloned image, like button, and like count to the container
       container.appendChild(clonedImage);
@@ -218,7 +218,7 @@ h2 {
       button.addEventListener('click', function() {
         var countElement = this.parentNode.querySelector('.like-count');
         var currentCount = parseInt(countElement.textContent);
-        countElement.textContent = (currentCount + 1) + ' likes';
+        countElement.textContent = currentCount + 1;
       });
     });
   </script>
