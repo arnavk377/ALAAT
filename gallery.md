@@ -1,59 +1,50 @@
-<html>
 <style>
 .mytd {
-  height: 80px;
-  width: 160px;
-  text-align: center;
-  vertical-align: middle;
-  border: 1px solid black;
+    height: 80px;
+    width: 160px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid black;
+    
 }
-.myth {
-  border: 1px solid black;
-  height: 30px;
-  background-color: aliceblue;
+.myth{
+    border: 1px solid black;
+    height: 30px;
 }
 .mytable1 {
-  width: 85%;
-  margin: auto;
-  text-align: center;
-  background-color: aliceblue;
-  border: 1px solid black;
-  border-collapse: collapse;
-}
-.mytable1 th {
-  padding: 10px;
-}
-.mytable1 td {
-  border: 1px solid black;
-  padding: 10px;
-}
-.mytext {
-  font-weight: bolder;
-}
-.mytable {
-  width: 70%;
-  margin: auto;
-  text-align: center;
-  background-color: lightgrey;
-  border-radius: 20px;
+    width: 85%;
+    margin: auto;
+    text-align: center;
+    background-color: aliceblue;
+    border: 1px solid black;
 }
 img {
-  width: 90%;
-  height: auto;
-  max-height: 100px;
-  object-fit: contain;
+    width: 90%;
+    height: 275%;
+    object-fit: contain;
 }
-.mytable1 p {
+.mytable {
+  width:70%;
+  margin:auto;
   text-align: center;
-  margin: 10px;
+  background-color: lightgrey;  
+  border-radius: 20px
+}
+.mytext {
+    font-weight: bolder;
+}
+ td {
+  border: 1px solid black;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 </style>
+
 <table class="mytable1" id="cars_table">
   <thead>
   <tr>
     <th class="myth">ID</th>
     <th class="myth">Name</th>
-    <th class="myth">Images!</th>
     <th class="myth">Like</th>
     <th class="myth"># of Likes</th>
     <th class="myth">uid</th>
@@ -64,7 +55,6 @@ img {
     <!-- javascript generated data -->
   </tbody>
 </table>
-<p><center>Add your Own Car!</center></p>
 <script>
   const resultContainer = document.getElementById("result");
   const url = "http://127.0.0.1:8086/api/images/"
@@ -197,5 +187,5 @@ img {
     resultContainer.appendChild(tr);
   }
 
+
 </script>
-</html>
