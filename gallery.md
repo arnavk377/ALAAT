@@ -1,42 +1,58 @@
 <style>
 .mytd {
-    height: 80px;
-    width: 160px;
-    text-align: center;
-    vertical-align: middle;
-    border: 1px solid black;
-    
-}
-.myth{
-    border: 1px solid black;
-    height: 30px;
-}
-.mytable1 {
-    width: 85%;
-    margin: auto;
-    text-align: center;
-    background-color: aliceblue;
-    border: 1px solid black;
-}
-img {
-    width: 90%;
-    height: 275%;
-    object-fit: contain;
-}
-.mytable {
-  width:70%;
-  margin:auto;
+  height: 80px;
+  width: 160px;
   text-align: center;
-  background-color: lightgrey;  
-  border-radius: 20px
-}
-.mytext {
-    font-weight: bolder;
-}
- td {
+  vertical-align: middle;
   border: 1px solid black;
-  padding-top: 10px;
-  padding-bottom: 10px;
+}
+
+.myth {
+  border: 1px solid black;
+  height: 30px;
+  background-color: aliceblue;
+}
+
+.mytable1 {
+  width: 85%;
+  margin: auto;
+  text-align: center;
+  background-color: aliceblue;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.mytable1 th {
+  padding: 10px;
+}
+
+.mytable1 td {
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.mytext {
+  font-weight: bolder;
+}
+
+.mytable {
+  width: 70%;
+  margin: auto;
+  text-align: center;
+  background-color: lightgrey;
+  border-radius: 20px;
+}
+
+img {
+  width: 90%;
+  height: auto;
+  max-height: 100px;
+  object-fit: contain;
+}
+
+.mytable1 p {
+  text-align: center;
+  margin: 10px;
 }
 </style>
 
