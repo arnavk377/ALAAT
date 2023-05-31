@@ -1,35 +1,3 @@
-<!DOCTYPE html>
-
-<!DOCTYPE html>
-<html>
-    <body>
-        <!--the header section or the top part of every page-->
-        <section class="header">
-            <nav>
-                <!--the logo on the header-->
-                <a href="{{ site.baseurl }}/home2.html"><img src ="images/ALAATlogo.png"></a>
-                <link rel="stylesheet" href="index.css">
-                <div class="nav-links">
-                    <ul>
-                        <!--the links to the other pages-->
-                        <li><a href="{{ site.baseurl }}/home2.html">GALLERY</a></li>
-                        <li><a href="{{ site.baseurl }}/comments.html">SUGGESTIONS</a></li>
-                        <li><a href="{{ site.baseurl }}">OUR TEAM</a></li>
-                        <li><a href="{{ site.baseurl }}/signup.html">SIGN-UP</a></li>
-                    </ul>
-                    <!--loading screen-->
-                    <script>
-                        var loader = document.getElementById("loading");
-                        window.addEventListener("load", function(){
-                            loader.style.display = "none";
-                        })
-                    </script>
-                </div>
-            </nav>
-        </section>
-    </body>
-</html>
-
 <html>
   <head>
     <title>User Comments</title>
@@ -98,6 +66,7 @@
     </style>
   </head>
   <body>
+    
     <div class="container">
       <div class="Commentssection">
         <h1>User Comments</h1>
