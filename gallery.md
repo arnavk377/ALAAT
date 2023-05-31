@@ -52,7 +52,7 @@ img {
 
 .mytable1 p {
   text-align: center;
-  margin: 10px;
+  margin:2px;
 }
 </style>
 
