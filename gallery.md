@@ -15,7 +15,7 @@
 
 .mytable1 {
   width: 85%;
-  margin: 10px;
+  margin: auto;
   text-align: center;
   background-color: aliceblue;
   border: 1px solid black;
@@ -23,12 +23,12 @@
 }
 
 .mytable1 th {
-  padding: 10px;
+  padding: 5px;
 }
 
 .mytable1 td {
   border: 1px solid black;
-  padding: 10px;
+  padding: 5px;
 }
 
 .mytext {
