@@ -1,60 +1,42 @@
 <style>
 .mytd {
-  height: 80px;
-  width: 160px;
-  text-align: center;
-  vertical-align: middle;
-  border: 1px solid black;
+    height: 80px;
+    width: 160px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid black;
+    
 }
-
-.myth {
-  border: 1px solid black;
-  height: 30px;
-  background-color: aliceblue;
+.myth{
+    border: 1px solid black;
+    height: 30px;
 }
-
 .mytable1 {
-  padding: 10px;
-  width: 85%;
-  margin: auto;
-  text-align: center;
-  background-color: aliceblue;
-  border: 1px solid black;
-  border-collapse: collapse;
+    width: 85%;
+    margin: auto;
+    text-align: center;
+    background-color: aliceblue;
+    border: 1px solid black;
 }
-
-.mytable1 th {
-  padding: 5px;
+img {
+    width: 90%;
+    height: 275%;
+    object-fit: contain;
 }
-
-.mytable1 td {
-  border: 1px solid black;
-  padding: 5px;
-}
-
-.mytext {
-  font-weight: bolder;
-}
-
 .mytable {
-  width: 70%;
-  margin: auto;
+  width:70%;
+  margin:auto;
   text-align: center;
   background-color: lightgrey;
   border-radius: 20px;
-  padding: 10px;sgfwgf
 }
-
-img {
-  width: 95%;
-  height: auto;
-  max-height: 200px;
-  object-fit: contain;
+.mytext {
+    font-weight: bolder;
 }
-
-.mytable1 p {
-  text-align: center;
-  margin: 10px;
+ td {
+  border: 1px solid black;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 </style>
 
@@ -65,6 +47,7 @@ img {
     <th class="myth">Name</th>
     <th class="myth">Like</th>
     <th class="myth"># of Likes</th>
+    <th class="myth">uid</th>
     <th class = "myth"> image </th>
   </tr>
   </thead>
@@ -73,7 +56,7 @@ img {
   </tbody>
 </table>
 <script>
-const resultContainer = document.getElementById("result");
+  const resultContainer = document.getElementById("result");
   const url = "http://127.0.0.1:8086/api/images/"
   const create_fetch = url + '';
   const read_fetch = url;
@@ -200,5 +183,7 @@ const resultContainer = document.getElementById("result");
   tr.appendChild(imageCell);
   resultContainer.appendChild(tr);
 }
+
+
 
 </script>
