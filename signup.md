@@ -1,5 +1,5 @@
-   <html>
-   <head>
+<html>
+<head>
    <title>ALAAT Sign Up Page</title>
    <style>
       /* CSS styles for the login page */
@@ -30,8 +30,8 @@
          cursor: pointer;
       }
    </style>
-   </head>
-   <body>
+</head>
+<body>
    <div class="container">
       <h1>Sign Up</h1>
       <form id="signupForm">
@@ -40,56 +40,56 @@
          <input type="password" id="passwordInput" placeholder="Password">
          <button id="signupBtn" onclick="create_user()">Sign Up</button>
       </form>
-         <button onclick="redirect()" id="LoginBtn">Login</button>
+      <button onclick="redirect()" id="LoginBtn">Login</button>
    </div>
 
-<script>
-function redirect(){
-window.location.href = '{{ site.baseurl }}/login.html';
-}
-//const resultContainer = document.getElementById("result");
-  // set up base URL to make it easier to use and implement
-  const url = "https://alaat.duckdns.org/api/users"
+   <script>
+      function redirect() {
+         window.location.href = '{{ site.baseurl }}/login.html';
+      }
 
-   const create_fetch = url + '/';
-   const read_fetch = url + '/';
-   const delete_fetch = url + '/delete';
-   const patch_fetch = url + '/update';
-   // const read_button = document.getElementById("read_button");
-   // const criteria = document.getElementById("criteria")
-   // Display a fact pair
+      const url = "http://127.0.0.1:8086/api/users/";
 
-   function create_user(){
-      const body = {
-         name: document.getElementById("nameInput").value,
-         uid: document.getElementById("uidInput").value,
-         password: document.getElementById("passwordInput").value,
-      };
-      const requestOptions = {
-         method: 'POST',
-         body: JSON.stringify(body),
-         mode: 'cors', // headers for cors policy
-         cache: 'default', // cahe header
-         credentials: 'omit', // header for credentials
-         headers: {
-               "content-type": "application/json",
-               'Authorization': 'Bearer my-token',
-         },
-      };
-      fetch(create_fetch, requestOptions)
-         .then(response => {
-         // check if errors
-         if (response.status !== 200) {
-            const errorMsg = 'Database create error: ' + response.status;
-            console.log(errorMsg);
-            const tr = document.createElement("tr");
-            const td = document.createElement("td");
-            td.innerHTML = errorMsg;
-            tr.appendChild(td);
-            resultContainer.appendChild(tr);
-            return;
-         }
-      })
-   }
+      function create_user() {
+         const name = document.getElementById("nameInput").value;
+         const uid = document.getElementById("uidInput").value;
+         const password = document.getElementById("passwordInput").value;
+
+         const body = {
+            name: name,
+            uid: uid,
+            password: password
+         };
+
+         const requestOptions = {
+            method: 'POST',
+            body: JSON.stringify(body),
+            mode: 'cors', // headers for cors policy
+            cache: 'default', // cahe header
+            credentials: 'omit', // header for credentials
+            headers: {
+                  "Content-Type": "application/json",
+            },
+         };
+
+         fetch(url, requestOptions)
+            .then(response => {
+               if (response.status !== 200) {
+                  const errorMsg = 'Database create error: ' + response.status;
+                  console.log(errorMsg);
+                  const errorContainer = document.getElementById("errorContainer");
+                  const errorMessage = document.createElement("p");
+                  errorMessage.textContent = errorMsg;
+                  errorContainer.appendChild(errorMessage);
+               } else {
+                  // Handle successful signup, e.g., redirect to a success page
+                  window.location.href = '{{ site.baseurl }}/login.html';
+               }
+            })
+            .catch(error => {
+               console.log('Error:', error);
+            });
+      }
    </script>
-   </html>
+</body>
+</html>
