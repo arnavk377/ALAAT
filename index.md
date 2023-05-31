@@ -34,10 +34,3 @@
         <h3>Amay Advani</h3>
         <p>Developer</p>
 </div>
-
-<!-- 
-<section class="about">
-    <h3>OUR MISSION</h3>
-    <p>Learning how to customize your website/game </p> -->
-
-<!-- </section> -->
