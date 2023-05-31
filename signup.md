@@ -43,13 +43,13 @@
          <button onclick="redirect()" id="LoginBtn">Login</button>
    </div>
 
-   <script>
-   function redirect(){
-   window.location.href = '{{ site.baseurl }}/login.html';
-   }
-   //const resultContainer = document.getElementById("result");
-   // set up base URL to make it easier to use and implement
-   const url = "http://127.0.0.1:8086/api/users"
+<script>
+function redirect(){
+window.location.href = '{{ site.baseurl }}/login.html';
+}
+//const resultContainer = document.getElementById("result");
+  // set up base URL to make it easier to use and implement
+  const url = "https://alaat.duckdns.org/api/users"
 
    const create_fetch = url + '/';
    const read_fetch = url + '/';
