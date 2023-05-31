@@ -15,7 +15,7 @@
 
 .mytable1 {
   width: 85%;
-  margin: auto;
+  margin: 20px;
   text-align: center;
   background-color: aliceblue;
   border: 1px solid black;
@@ -44,7 +44,7 @@
 }
 
 img {
-  width: 90%;
+  width: 95%;
   height: auto;
   max-height: 100px;
   object-fit: contain;
@@ -63,7 +63,6 @@ img {
     <th class="myth">Name</th>
     <th class="myth">Like</th>
     <th class="myth"># of Likes</th>
-    <th class="myth">uid</th>
     <th class = "myth"> image </th>
   </tr>
   </thead>
