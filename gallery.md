@@ -15,7 +15,7 @@
 
 .mytable1 {
   width: 85%;
-  margin: auto;
+  margin: 10px;
   text-align: center;
   background-color: aliceblue;
   border: 1px solid black;
@@ -52,7 +52,7 @@ img {
 
 .mytable1 p {
   text-align: center;
-  margin:2px;
+  margin: 10px;
 }
 </style>
 
