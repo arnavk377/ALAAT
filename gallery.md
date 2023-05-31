@@ -15,7 +15,7 @@
 
 .mytable1 {
   width: 85%;
-  margin: 20px;
+  margin: auto;
   text-align: center;
   background-color: aliceblue;
   border: 1px solid black;
@@ -46,7 +46,7 @@
 img {
   width: 95%;
   height: auto;
-  max-height: 100px;
+  max-height: 200px;
   object-fit: contain;
 }
 
@@ -125,10 +125,9 @@ img {
       resultContainer.appendChild(tr);
     });
   }
-  function like_car(image_id, num_like, image_uid, image_name) {
+  function like_car(image_id, num_like, image_name) {
   const body = {
     id: image_id,
-    uid: image_uid,
     name: image_name,
     likes: num_like + 1,
   };
@@ -170,7 +169,6 @@ img {
     const car = document.createElement("td");
     const id = document.createElement("td");
     const name = document.createElement("td");
-    const uid = document.createElement("td");
     const col2 = document.createElement("td");
     const image = document.createElement("td");
     const like_button = document.createElement("input");
@@ -182,9 +180,8 @@ img {
     car.innerHTML = data.name;
     id.innerHTML = data.id;
     num_like.innerHTML = data.likes;
-    uid.innerHTML = data.uid;
     like_button.onclick = function() {
-      like_car(data.id, data.likes, data.name, data.uid);
+      like_car(data.id, data.likes, data.name);
     };
     // create and set the image element
     const img = document.createElement("img");
@@ -197,7 +194,6 @@ img {
     tr.appendChild(car);
     tr.appendChild(col2);
     tr.appendChild(num_like);
-    tr.appendChild(uid);
     tr.appendChild(image);
     resultContainer.appendChild(tr);
   }
