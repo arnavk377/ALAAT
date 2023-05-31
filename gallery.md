@@ -14,6 +14,7 @@
 }
 
 .mytable1 {
+  padding: 10px;
   width: 85%;
   margin: auto;
   text-align: center;
@@ -41,6 +42,7 @@
   text-align: center;
   background-color: lightgrey;
   border-radius: 20px;
+  padding: 10px;sgfwgf
 }
 
 img {
