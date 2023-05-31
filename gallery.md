@@ -27,8 +27,8 @@ img {
   width:70%;
   margin:auto;
   text-align: center;
-  background-color: lightgrey;
-  border-radius: 20px;
+  background-color: lightgrey;  
+  border-radius: 20px
 }
 .mytext {
     font-weight: bolder;
