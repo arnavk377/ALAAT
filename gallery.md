@@ -1,42 +1,60 @@
 <style>
 .mytd {
-    height: 80px;
-    width: 160px;
-    text-align: center;
-    vertical-align: middle;
-    border: 1px solid black;
-    
-}
-.myth{
-    border: 1px solid black;
-    height: 30px;
-}
-.mytable1 {
-    width: 85%;
-    margin: auto;
-    text-align: center;
-    background-color: aliceblue;
-    border: 1px solid black;
-}
-img {
-    width: 90%;
-    height: 275%;
-    object-fit: contain;
-}
-.mytable {
-  width:70%;
-  margin:auto;
+  height: 80px;
+  width: 160px;
   text-align: center;
-  background-color: lightgrey;  
-  border-radius: 20px
-}
-.mytext {
-    font-weight: bolder;
-}
- td {
+  vertical-align: middle;
   border: 1px solid black;
-  padding-top: 10px;
-  padding-bottom: 10px;
+}
+
+.myth {
+  border: 1px solid black;
+  height: 30px;
+  background-color: aliceblue;
+}
+
+.mytable1 {
+  padding: 10px;
+  width: 85%;
+  margin: auto;
+  text-align: center;
+  background-color: aliceblue;
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+.mytable1 th {
+  padding: 5px;
+}
+
+.mytable1 td {
+  border: 1px solid black;
+  padding: 5px;
+}
+
+.mytext {
+  font-weight: bolder;
+}
+
+.mytable {
+  width: 70%;
+  margin: auto;
+  text-align: center;
+  background-color: lightgrey;
+  border-radius: 20px;
+  padding: 10px;sgfwgf
+}
+
+img {
+  width: 95%;
+  height: auto;
+  max-height: 200px;
+  object-fit: contain;
+}
+
+.mytable1 p {
+  text-align: center;
+  margin: 10px;
 }
 </style>
 
@@ -47,7 +65,6 @@ img {
     <th class="myth">Name</th>
     <th class="myth">Like</th>
     <th class="myth"># of Likes</th>
-    <th class="myth">uid</th>
     <th class = "myth"> image </th>
   </tr>
   </thead>
@@ -56,7 +73,7 @@ img {
   </tbody>
 </table>
 <script>
-  const resultContainer = document.getElementById("result");
+const resultContainer = document.getElementById("result");
   const url = "http://127.0.0.1:8086/api/images/"
   const create_fetch = url + '';
   const read_fetch = url;
@@ -150,42 +167,38 @@ img {
     });
   }
   function add_row(data) {
-    const tr = document.createElement("tr");
-    tr.class = "mytd";
-    const car = document.createElement("td");
-    const id = document.createElement("td");
-    const name = document.createElement("td");
-    const uid = document.createElement("td");
-    const col2 = document.createElement("td");
-    const image = document.createElement("td");
-    const like_button = document.createElement("input");
-    like_button.type = "button";
-    like_button.value = "Like";
-    const num_like = document.createElement("td");
-    col2.appendChild(like_button);
-    // obtain data that is specific to the API
-    car.innerHTML = data.name;
-    id.innerHTML = data.id;
-    num_like.innerHTML = data.likes;
-    uid.innerHTML = data.uid;
-    like_button.onclick = function() {
-      like_car(data.id, data.likes, data.name, data.uid);
-    };
-    // create and set the image element
-    const img = document.createElement("img");
-    img.src =  data.image; // assuming the image is in JPEG format, change the format if needed
-    img.alt = data.name; // set the alt attribute to the car name or any other meaningful description
-    // add the image to the image td element
-    image.appendChild(img);
-    // add HTML to container
-    tr.appendChild(id);
-    tr.appendChild(car);
-    tr.appendChild(col2);
-    tr.appendChild(num_like);
-    tr.appendChild(uid);
-    tr.appendChild(image);
-    resultContainer.appendChild(tr);
-  }
-
+  const tr = document.createElement("tr");
+  tr.classList.add("mytd");
+  const id = document.createElement("td");
+  const name = document.createElement("td");
+  const likeButtonCell = document.createElement("td");
+  const numLikes = document.createElement("td");
+  const uid = document.createElement("td");
+  const imageCell = document.createElement("td");
+  const likeButton = document.createElement("input");
+  likeButton.type = "button";
+  likeButton.value = "Like";
+  likeButton.addEventListener("click", function() {
+    like_car(data.id, data.likes, data.uid, data.name);
+  });
+  id.textContent = data.id;
+  name.textContent = data.name;
+  numLikes.textContent = data.likes ? data.likes : 0; // Check if 'likes' exists, otherwise use 0
+  uid.textContent = data.uid;
+  const img = document.createElement("img");
+  img.src = data.image;
+  img.alt = data.name;
+  img.style.width = "100%";
+  img.style.height = "100%";
+  likeButtonCell.appendChild(likeButton);
+  imageCell.appendChild(img);
+  tr.appendChild(id);
+  tr.appendChild(name);
+  tr.appendChild(likeButtonCell);
+  tr.appendChild(numLikes);
+  tr.appendChild(uid);
+  tr.appendChild(imageCell);
+  resultContainer.appendChild(tr);
+}
 
 </script>
