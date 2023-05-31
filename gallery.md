@@ -73,7 +73,7 @@ img {
   </tbody>
 </table>
 <script>
-  const resultContainer = document.getElementById("result");
+const resultContainer = document.getElementById("result");
   const url = "http://127.0.0.1:8086/api/images/"
   const create_fetch = url + '';
   const read_fetch = url;
@@ -127,9 +127,10 @@ img {
       resultContainer.appendChild(tr);
     });
   }
-  function like_car(image_id, num_like, image_name) {
+  function like_car(image_id, num_like, image_uid, image_name) {
   const body = {
     id: image_id,
+    uid: image_uid,
     name: image_name,
     likes: num_like + 1,
   };
@@ -166,39 +167,38 @@ img {
     });
   }
   function add_row(data) {
-    const tr = document.createElement("tr");
-    tr.class = "mytd";
-    const car = document.createElement("td");
-    const id = document.createElement("td");
-    const name = document.createElement("td");
-    const col2 = document.createElement("td");
-    const image = document.createElement("td");
-    const like_button = document.createElement("input");
-    like_button.type = "button";
-    like_button.value = "Like";
-    const num_like = document.createElement("td");
-    col2.appendChild(like_button);
-    // obtain data that is specific to the API
-    car.innerHTML = data.name;
-    id.innerHTML = data.id;
-    num_like.innerHTML = data.likes;
-    like_button.onclick = function() {
-      like_car(data.id, data.likes, data.name);
-    };
-    // create and set the image element
-    const img = document.createElement("img");
-    img.src =  data.image; // assuming the image is in JPEG format, change the format if needed
-    img.alt = data.name; // set the alt attribute to the car name or any other meaningful description
-    // add the image to the image td element
-    image.appendChild(img);
-    // add HTML to container
-    tr.appendChild(id);
-    tr.appendChild(car);
-    tr.appendChild(col2);
-    tr.appendChild(num_like);
-    tr.appendChild(image);
-    resultContainer.appendChild(tr);
-  }
-
+  const tr = document.createElement("tr");
+  tr.classList.add("mytd");
+  const id = document.createElement("td");
+  const name = document.createElement("td");
+  const likeButtonCell = document.createElement("td");
+  const numLikes = document.createElement("td");
+  const uid = document.createElement("td");
+  const imageCell = document.createElement("td");
+  const likeButton = document.createElement("input");
+  likeButton.type = "button";
+  likeButton.value = "Like";
+  likeButton.addEventListener("click", function() {
+    like_car(data.id, data.likes, data.uid, data.name);
+  });
+  id.textContent = data.id;
+  name.textContent = data.name;
+  numLikes.textContent = data.likes ? data.likes : 0; // Check if 'likes' exists, otherwise use 0
+  uid.textContent = data.uid;
+  const img = document.createElement("img");
+  img.src = data.image;
+  img.alt = data.name;
+  img.style.width = "100%";
+  img.style.height = "100%";
+  likeButtonCell.appendChild(likeButton);
+  imageCell.appendChild(img);
+  tr.appendChild(id);
+  tr.appendChild(name);
+  tr.appendChild(likeButtonCell);
+  tr.appendChild(numLikes);
+  tr.appendChild(uid);
+  tr.appendChild(imageCell);
+  resultContainer.appendChild(tr);
+}
 
 </script>
