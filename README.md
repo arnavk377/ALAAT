@@ -1,6 +1,14 @@
 ## Backend Code
 [Link](https://github.com/Firestorm0986/Tri-3-web)
 
+## Instructions to use the Website
+
+1) Create an Account by inputing your name, uid, and password. We made sure that your password had to be 5 letters or more to prevent it being guessed.
+2) Log In 
+3) The page will be immedietly redirected to the upload page, where you can upload pngs and jpegs
+4) Add a picture id and name, then press upload and navigate to the gallery where you can see your uploaded image.
+5) From there you can like and comment on each picture, which will be sent to the backend so we can see the comments and improve on our ui.
+
 ## Runtime Instructions
 
 ```bash
